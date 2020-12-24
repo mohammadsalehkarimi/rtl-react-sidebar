@@ -1,103 +1,69 @@
 /** @format */
-
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
-import { Typography } from "@material-ui/core";
-
-const drawerWidth = 240;
-
-const useStyles = makeStyles((theme) => ({
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  toolbar: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(3),
-  },
-}));
+import Clear from "@material-ui/icons/Clear";
+import Account from "@material-ui/icons/AccountBoxOutlined";
+import { Link } from "react-router-dom";
 
 export const Sidebar = () => {
-  const classes = useStyles();
+  const handleSidebar = () => {
+    document
+      .getElementsByClassName("MuiDrawer-paperAnchorDockedRight")[0]
+      .setAttribute("style", "display : none !important");
+    document
+      .getElementsByClassName("toggleSidebarBtn")[0]
+      .setAttribute("style", "display : inline !important");
+  };
 
   return (
     <div>
+      <div className='mt-3 mr-3 container'>
+        <div className='row'>
+          <div className='col-12'></div>
+        </div>
+      </div>
       <Drawer
-        className={classes.drawer}
+        className='sidebarContainer text-light'
         variant='permanent'
-        classes={{
-          paper: classes.drawerPaper,
-        }}
         anchor='right'>
-        <div className={classes.toolbar}>
-          <Typography className='mt-3 text-center' variant='h6' noWrap>
-            محمدصالح کریمی
-          </Typography>
+        <Clear
+          className='ml-3 text-dark my-3 toggleIcon clearBtn'
+          onClick={handleSidebar}
+        />{" "}
+        <div className='my-4 text-center '>
+          <img
+            src='https://wannabe1337.xyz/resources/img/icons/profile.svg'
+            width='100px'
+            draggable='false'
+            className='rounded-circle'
+            alt=''
+          />
+          <br />
+          <div className='mx-auto'>
+            <p className='mt-2 text-dark'>
+              <span className='text-muted'>محمدصالح کریمی</span>
+            </p>
+          </div>
+          <div className='mx-auto'>
+            <p className='mt-2 text-dark'>
+              <span className='text-muted'>ادمین اصلی</span>{" "}
+            </p>
+          </div>
         </div>
         <Divider />
         <List>
-          {["صندوق دریافت", "برگزیده ها", "ارسال ایمیل", "پیش نویس ها"].map(
-            (text, index) => (
-              <ListItem dir='rtl' className='text-right' button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ),
-          )}
-        </List>
-        <Divider />
-        <List>
-          {["صندوق دریافت", "برگزیده ها", "ارسال ایمیل", "پیش نویس ها"].map(
-            (text, index) => (
-              <ListItem dir='rtl' className='text-right' button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ),
-          )}
-        </List>
-        <Divider />
-        <List>
-          {["صندوق دریافت", "برگزیده ها", "ارسال ایمیل", "پیش نویس ها"].map(
-            (text, index) => (
-              <ListItem dir='rtl' className='text-right' button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ),
-          )}
-        </List>
-        <Divider />
-        <List>
-          {["صندوق دریافت", "برگزیده ها", "ارسال ایمیل", "پیش نویس ها"].map(
-            (text, index) => (
-              <ListItem dir='rtl' className='text-right' button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ),
-          )}
+          <Link to='/'>
+            <ListItem className='text-right py-3' dir='rtl' button>
+              <ListItemIcon>
+                <Account />{" "}
+                <span className='mr-4 mt-1 font-bold'>پروفایل کاربری</span>
+              </ListItemIcon>
+            </ListItem>
+          </Link>
         </List>
       </Drawer>
     </div>

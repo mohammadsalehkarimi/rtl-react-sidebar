@@ -1,12 +1,13 @@
 /** @format */
 
 import React from "react";
+import { BrowserRouter, Route } from "react-router-dom";
 import { Information } from "../components/MyInformation";
 
 export const App = () => {
   return (
-    <div>
-      <Information />
-    </div>
+    <BrowserRouter>
+      <Route path='/' component={Information} />
+    </BrowserRouter>
   );
 };
